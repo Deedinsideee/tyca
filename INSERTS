@@ -1,0 +1,31 @@
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+
+
+INSERT INTO venue_type (id, name) VALUES
+
+                                      (uuid_generate_v4(), 'Клубы'),
+                                      (uuid_generate_v4(), 'Бары'),
+                                      (uuid_generate_v4(), 'Караоке'),
+                                      (uuid_generate_v4(), 'Стриптиз-клубы'),
+                                      (uuid_generate_v4(), 'Концертные площадки');
+INSERT INTO filter (id, filter, venue_type_id) VALUES
+                                                   (uuid_generate_v4(), 'Музыка: Поп', (SELECT id FROM venue_type WHERE name = 'Караоке')),
+                                                   (uuid_generate_v4(), 'Музыка: Рок', (SELECT id FROM venue_type WHERE name = 'Караоке')),
+                                                   (uuid_generate_v4(), 'Цены: Низкие', (SELECT id FROM venue_type WHERE name = 'Бары')),
+                                                   (uuid_generate_v4(), 'Цены: Высокие', (SELECT id FROM venue_type WHERE name = 'Клубы'));
+
+
+INSERT INTO venue (id, name, venue_type_id) VALUES
+                                                (uuid_generate_v4(), 'Караоке Хаус', (SELECT id FROM venue_type WHERE name = 'Караоке')),
+                                                (uuid_generate_v4(), 'Ночной клуб Луна', (SELECT id FROM venue_type WHERE name = 'Клубы')),
+                                                (uuid_generate_v4(), 'Барабан', (SELECT id FROM venue_type WHERE name = 'Бары')),
+                                                (uuid_generate_v4(), 'Стриптиз клуб Звезда', (SELECT id FROM venue_type WHERE name = 'Стриптиз-клубы')),
+                                                (uuid_generate_v4(), 'Концертный зал Гром', (SELECT id FROM venue_type WHERE name = 'Концертные площадки'));
+
+
+INSERT INTO venue_filter (id, venue_id, filter_id, bool_data, int_data_min, int_data_max) VALUES
+(1, (SELECT id FROM venue WHERE name = 'Караоке Хаус'), (SELECT id FROM filter WHERE filter = 'Музыка: Поп'), true, NULL, NULL),
+(2, (SELECT id FROM venue WHERE name = 'Караоке Хаус'), (SELECT id FROM filter WHERE filter = 'Цены: Низкие'), NULL, 500, 1000),  -- Пример ценового диапазона
+(3, (SELECT id FROM venue WHERE name = 'Ночной клуб Луна'), (SELECT id FROM filter WHERE filter = 'Цены: Высокие'), NULL, 2000, 10000), -- Пример ценового диапазона
+(4, (SELECT id FROM venue WHERE name = 'Барабан'), (SELECT id FROM filter WHERE filter = 'Цены: Низкие'), NULL, 300, 700); -- Пример ценового диапазона
