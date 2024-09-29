@@ -1,7 +1,7 @@
 spring:
   liquibase:
     enabled: true
-    change-log: classpath:/db/changelog/db.changelog-master.xml
+    change-log: classpath:/changelog/db.changelog-master.xml
 
   datasource:
     url: jdbc:postgresql://localhost:5432/quotes

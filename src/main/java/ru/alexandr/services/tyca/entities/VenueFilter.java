@@ -33,7 +33,10 @@ public class VenueFilter {
     @Column(name = "bool_data")
     private Boolean boolData;
 
-    @Column(name = "int_data")
-    private Integer intData;
+    @Column(name = "int_data_min")
+    private Integer intDataMin;
+
+    @Column(name = "int_data_max")
+    private Integer intDataMax;
 
 }

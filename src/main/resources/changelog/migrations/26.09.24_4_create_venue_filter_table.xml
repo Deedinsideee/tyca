@@ -17,7 +17,8 @@
                 <constraints nullable="false" foreignKeyName="filter_venue" referencedTableName="filter" referencedColumnNames="id"/>
             </column>
             <column name="bool_data" type="boolean"/>
-            <column name="int_data" type="int"/>
+            <column name="int_data_min" type="int"/>
+            <column name="int_data_max" type="int"/>
         </createTable>
     </changeSet>
 

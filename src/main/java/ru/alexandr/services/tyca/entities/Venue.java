@@ -1,5 +1,6 @@
 package ru.alexandr.services.tyca.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -31,11 +32,13 @@ public class Venue {
     @Column(name = "name", nullable = false, length = 50)
     private String name;
 
+    @JsonIgnore
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "venue_type_id", nullable = false)
     private VenueType venueType;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "venue")
     private Set<VenueFilter> venueFilters = new LinkedHashSet<>();
 
