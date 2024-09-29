@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="3" author="Grishkov Alexandr">
+
+        <createTable tableName="venue_filter">
+            <column name="id" type="integer">
+                <constraints nullable="false" primaryKey="true" />
+            </column>
+            <column name="venue_id" type="UUID">
+                <constraints nullable="false" foreignKeyName="venue_filter" referencedTableName="venue" referencedColumnNames="id"/>
+            </column>
+            <column name="filter_id" type="UUID">
+                <constraints nullable="false" foreignKeyName="filter_venue" referencedTableName="filter" referencedColumnNames="id"/>
+            </column>
+            <column name="bool_data" type="boolean"/>
+            <column name="int_data" type="int"/>
+        </createTable>
+    </changeSet>
+
+
+
+
+</databaseChangeLog>
